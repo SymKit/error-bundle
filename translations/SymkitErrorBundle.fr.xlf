@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="SymkitErrorBundle">
+        <body>
+            <!-- Common -->
+            <trans-unit id="error.default.title">
+                <source>error.default.title</source>
+                <target>Erreur | %website_name%</target>
+            </trans-unit>
+            <trans-unit id="error.action.home">
+                <source>error.action.home</source>
+                <target>Retour à l'accueil</target>
+            </trans-unit>
+            <trans-unit id="error.footer.rights">
+                <source>error.footer.rights</source>
+                <target>Tous droits réservés.</target>
+            </trans-unit>
+            <trans-unit id="error.terminal.label.code">
+                <source>error.terminal.label.code</source>
+                <target>Code :</target>
+            </trans-unit>
+            <trans-unit id="error.terminal.label.status">
+                <source>error.terminal.label.status</source>
+                <target>Statut :</target>
+            </trans-unit>
+
+            <!-- Generic error (500) -->
+            <trans-unit id="error.generic.title">
+                <source>error.generic.title</source>
+                <target>Erreur Système | %website_name%</target>
+            </trans-unit>
+            <trans-unit id="error.generic.terminal.cmd">
+                <source>error.generic.terminal.cmd</source>
+                <target>> initiating system_recovery...</target>
+            </trans-unit>
+            <trans-unit id="error.generic.terminal.error_line1">
+                <source>error.generic.terminal.error_line1</source>
+                <target>[CRITICAL_ERROR] Dysfonctionnement interne.</target>
+            </trans-unit>
+            <trans-unit id="error.generic.terminal.error_line2">
+                <source>error.generic.terminal.error_line2</source>
+                <target>Signal inattendu reçu du service principal.</target>
+            </trans-unit>
+            <trans-unit id="error.generic.terminal.status">
+                <source>error.generic.terminal.status</source>
+                <target>Équipe alertée</target>
+            </trans-unit>
+            <trans-unit id="error.generic.heading">
+                <source>error.generic.heading</source>
+                <target>Oups, le système a trébuché.</target>
+            </trans-unit>
+            <trans-unit id="error.generic.message">
+                <source>error.generic.message</source>
+                <target>Ne vous inquiétez pas, nos ingénieurs sont déjà en train d'analyser l'incident.</target>
+            </trans-unit>
+
+            <!-- 401 Unauthorized -->
+            <trans-unit id="error.401.title">
+                <source>error.401.title</source>
+                <target>Zone Restreinte | %website_name%</target>
+            </trans-unit>
+            <trans-unit id="error.401.terminal.cmd">
+                <source>error.401.terminal.cmd</source>
+                <target>> auth.verify_identity(session)</target>
+            </trans-unit>
+            <trans-unit id="error.401.terminal.error_line1">
+                <source>error.401.terminal.error_line1</source>
+                <target>[ACCESS_DENIED] Identifiants invalides.</target>
+            </trans-unit>
+            <trans-unit id="error.401.terminal.error_line2">
+                <source>error.401.terminal.error_line2</source>
+                <target>Protocole de sécurité enclenché.</target>
+            </trans-unit>
+            <trans-unit id="error.401.terminal.label.reason">
+                <source>error.401.terminal.label.reason</source>
+                <target>Raison :</target>
+            </trans-unit>
+            <trans-unit id="error.401.terminal.reason">
+                <source>error.401.terminal.reason</source>
+                <target>Jeton expiré ou manquant</target>
+            </trans-unit>
+            <trans-unit id="error.401.heading">
+                <source>error.401.heading</source>
+                <target>Zone Restreinte.</target>
+            </trans-unit>
+            <trans-unit id="error.401.message">
+                <source>error.401.message</source>
+                <target>Vous n'avez pas les permissions nécessaires pour accéder à cette ressource. Veuillez vous identifier.</target>
+            </trans-unit>
+
+            <!-- 403 Forbidden -->
+            <trans-unit id="error.403.title">
+                <source>error.403.title</source>
+                <target>Accès Interdit | %website_name%</target>
+            </trans-unit>
+            <trans-unit id="error.403.terminal.cmd">
+                <source>error.403.terminal.cmd</source>
+                <target>> sudo access_resource --id=SECURED</target>
+            </trans-unit>
+            <trans-unit id="error.403.terminal.error_line1">
+                <source>error.403.terminal.error_line1</source>
+                <target>[FORBIDDEN] Privilèges insuffisants.</target>
+            </trans-unit>
+            <trans-unit id="error.403.terminal.error_line2">
+                <source>error.403.terminal.error_line2</source>
+                <target>Votre rôle actuel ne peut pas effectuer cette action.</target>
+            </trans-unit>
+            <trans-unit id="error.403.terminal.label.required">
+                <source>error.403.terminal.label.required</source>
+                <target>Requis :</target>
+            </trans-unit>
+            <trans-unit id="error.403.terminal.label.log_id">
+                <source>error.403.terminal.label.log_id</source>
+                <target>Log ID :</target>
+            </trans-unit>
+            <trans-unit id="error.403.terminal.required">
+                <source>error.403.terminal.required</source>
+                <target>Accès_Élevé</target>
+            </trans-unit>
+            <trans-unit id="error.403.heading">
+                <source>error.403.heading</source>
+                <target>Accès refusé.</target>
+            </trans-unit>
+            <trans-unit id="error.403.message">
+                <source>error.403.message</source>
+                <target>Vous êtes bien connecté, mais vos privilèges actuels ne vous permettent pas d'accéder à cette section.</target>
+            </trans-unit>
+            <trans-unit id="error.403.footer_link">
+                <source>error.403.footer_link</source>
+                <target>Consulter les privilèges de mon groupe</target>
+            </trans-unit>
+
+            <!-- 404 Not Found -->
+            <trans-unit id="error.404.title">
+                <source>error.404.title</source>
+                <target>Page Introuvable | %website_name%</target>
+            </trans-unit>
+            <trans-unit id="error.404.terminal.cmd">
+                <source>error.404.terminal.cmd</source>
+                <target>> navigation.locate(target)</target>
+            </trans-unit>
+            <trans-unit id="error.404.terminal.error_line1">
+                <source>error.404.terminal.error_line1</source>
+                <target>[WARNING] Ressource introuvable.</target>
+            </trans-unit>
+            <trans-unit id="error.404.terminal.error_line2">
+                <source>error.404.terminal.error_line2</source>
+                <target>Les coordonnées pointent vers un secteur vide.</target>
+            </trans-unit>
+            <trans-unit id="error.404.terminal.label.path">
+                <source>error.404.terminal.label.path</source>
+                <target>Chemin :</target>
+            </trans-unit>
+            <trans-unit id="error.404.terminal.label.ping">
+                <source>error.404.terminal.label.ping</source>
+                <target>Ping :</target>
+            </trans-unit>
+            <trans-unit id="error.404.terminal.ping">
+                <source>error.404.terminal.ping</source>
+                <target>Aucune réponse</target>
+            </trans-unit>
+            <trans-unit id="error.404.heading">
+                <source>error.404.heading</source>
+                <target>Cette page a disparu dans le néant.</target>
+            </trans-unit>
+            <trans-unit id="error.404.message">
+                <source>error.404.message</source>
+                <target>L'URL que vous tentez d'atteindre n'existe pas ou a été déplacée vers une autre dimension.</target>
+            </trans-unit>
+
+            <!-- 429 Too Many Requests -->
+            <trans-unit id="error.429.title">
+                <source>error.429.title</source>
+                <target>Trop de Requêtes | %website_name%</target>
+            </trans-unit>
+            <trans-unit id="error.429.terminal.cmd">
+                <source>error.429.terminal.cmd</source>
+                <target>> rate_limiter.check(ip_address)</target>
+            </trans-unit>
+            <trans-unit id="error.429.terminal.error_line1">
+                <source>error.429.terminal.error_line1</source>
+                <target>[RATE_LIMIT] Trop de requêtes.</target>
+            </trans-unit>
+            <trans-unit id="error.429.terminal.error_line2">
+                <source>error.429.terminal.error_line2</source>
+                <target>Quota de requêtes dépassé pour cette fenêtre temporelle.</target>
+            </trans-unit>
+            <trans-unit id="error.429.terminal.label.retry">
+                <source>error.429.terminal.label.retry</source>
+                <target>Réessai :</target>
+            </trans-unit>
+            <trans-unit id="error.429.terminal.status">
+                <source>error.429.terminal.status</source>
+                <target>Limité</target>
+            </trans-unit>
+            <trans-unit id="error.429.terminal.retry">
+                <source>error.429.terminal.retry</source>
+                <target>Dans quelques instants</target>
+            </trans-unit>
+            <trans-unit id="error.429.heading">
+                <source>error.429.heading</source>
+                <target>Doucement l'ami.</target>
+            </trans-unit>
+            <trans-unit id="error.429.message">
+                <source>error.429.message</source>
+                <target>Vous avez effectué trop de requêtes en peu de temps. Veuillez patienter avant de réessayer.</target>
+            </trans-unit>
+            <trans-unit id="error.429.sub_message">
+                <source>error.429.sub_message</source>
+                <target>Cette limitation protège notre infrastructure contre les abus et garantit une expérience fluide pour tous.</target>
+            </trans-unit>
+            <trans-unit id="error.429.footer_link">
+                <source>error.429.footer_link</source>
+                <target>Consulter notre politique d'utilisation</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,66 @@
+{% extends '@Twig/Exception/base_error.html.twig' %}
+
+{% block error_title %}{{ 'error.403.title'|trans({'%website_name%': website_name}) }}{% endblock %}
+
+{% block cursor_color %}#f97316{% endblock %}
+
+{% block glow_effect %}
+<div class="error-glow error-glow--orange"></div>
+{% endblock %}
+
+{% block terminal_card %}
+<div class="terminal">
+    <div class="terminal-header">
+        <div class="terminal-dots">
+            <div class="terminal-dot terminal-dot--close"></div>
+            <div class="terminal-dot terminal-dot--minimize"></div>
+            <div class="terminal-dot terminal-dot--maximize"></div>
+        </div>
+        <div class="terminal-title">admin@system: ~</div>
+        <div class="terminal-header-icon text-orange">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1a11 11 0 1 0 0 22 11 11 0 0 0 0-22zm1 16h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        </div>
+    </div>
+
+    <div class="terminal-body">
+        <div class="terminal-cmd">{{ 'error.403.terminal.cmd'|trans }}</div>
+        <div class="terminal-error text-orange">
+            {{ 'error.403.terminal.error_line1'|trans }}<br>
+            {{ 'error.403.terminal.error_line2'|trans }}
+        </div>
+        <div class="terminal-info">
+            <div class="terminal-info-row">
+                <span class="terminal-info-label">{{ 'error.terminal.label.code'|trans }}</span>
+                <span class="text-primary">403_FORBIDDEN</span>
+            </div>
+            <div class="terminal-info-row">
+                <span class="terminal-info-label">{{ 'error.403.terminal.label.required'|trans }}</span>
+                <span class="text-purple">{{ 'error.403.terminal.required'|trans }}</span>
+            </div>
+            <div class="terminal-info-row">
+                <span class="terminal-info-label">{{ 'error.403.terminal.label.log_id'|trans }}</span>
+                <span class="text-primary">log_{{ "now"|date("U") }}</span>
+            </div>
+        </div>
+        <div class="terminal-prompt">
+            <span class="text-orange">&#10148;</span> <span class="terminal-cursor"></span>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block error_content %}
+<h1>{{ 'error.403.heading'|trans }}</h1>
+<p>{{ 'error.403.message'|trans }}</p>
+
+<div class="error-actions">
+    <a href="/" class="btn-home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        {{ 'error.action.home'|trans }}
+    </a>
+</div>
+{% endblock %}
+
+{% block footer_link %}
+<a href="/">{{ 'error.403.footer_link'|trans }}</a>
+{% endblock %}

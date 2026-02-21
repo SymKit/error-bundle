@@ -1,0 +1,10 @@
+deptrac:
+    paths:
+        - ./src
+    layers:
+        - name: Bundle
+          collectors:
+            - type: classLike
+              value: Symkit\\ErrorBundle\\SymkitErrorBundle
+    ruleset:
+        Bundle: []

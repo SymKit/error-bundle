@@ -1,0 +1,198 @@
+{% trans_default_domain 'SymkitErrorBundle' %}
+<!DOCTYPE html>
+<html lang="{{ app.request.locale|default('en') }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block error_title %}{{ 'error.default.title'|trans({'%website_name%': website_name}) }}{% endblock %}</title>
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { height: 100%; }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f1f5f9;
+            color: #1e293b;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+
+        :root { --cursor-color: {% block cursor_color %}#ef4444{% endblock %}; }
+
+        .error-grid {
+            position: absolute; inset: 0; z-index: 0;
+            opacity: 0.4; pointer-events: none;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .error-glow {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px; height: 500px;
+            border-radius: 50%; filter: blur(100px);
+            pointer-events: none;
+        }
+        .error-glow--red { background: rgba(239, 68, 68, 0.1); }
+        .error-glow--orange { background: rgba(249, 115, 22, 0.1); }
+        .error-glow--yellow { background: rgba(245, 158, 11, 0.1); }
+
+        .error-container {
+            position: relative; z-index: 10;
+            max-width: 32rem; width: 100%;
+            padding: 3rem 1.5rem;
+        }
+
+        .error-brand {
+            display: flex; justify-content: center; margin-bottom: 2rem;
+        }
+        .error-brand a {
+            display: flex; align-items: center; gap: 0.75rem;
+        }
+        .error-brand-name {
+            font-weight: 700; font-size: 1.5rem;
+            color: #0f172a; letter-spacing: -0.025em;
+        }
+
+        .terminal {
+            background: #fff; border: 1px solid #e2e8f0;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden; margin-bottom: 2rem;
+        }
+        .terminal--shake {
+            animation: shake 0.5s cubic-bezier(.36, .07, .19, .97) both;
+        }
+        .terminal-header {
+            background: #f8fafc; padding: 0.75rem 1rem;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .terminal-dots { display: flex; gap: 0.5rem; }
+        .terminal-dot {
+            width: 0.75rem; height: 0.75rem; border-radius: 50%;
+        }
+        .terminal-dot--close { background: #ff5f56; }
+        .terminal-dot--minimize { background: #ffbd2e; }
+        .terminal-dot--maximize { background: #27c93f; }
+        .terminal-title {
+            font-size: 0.75rem;
+            font-family: ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
+            color: #64748b;
+        }
+        .terminal-header-icon { color: inherit; display: flex; }
+        .terminal-body {
+            padding: 1.5rem;
+            font-family: ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
+            font-size: 0.875rem; line-height: 1.625;
+        }
+        .terminal-cmd { color: #64748b; margin-bottom: 0.5rem; }
+        .terminal-error { font-weight: 700; margin-bottom: 1rem; }
+        .terminal-info { color: #64748b; }
+        .terminal-info-row { display: flex; margin-bottom: 0.25rem; }
+        .terminal-info-label { width: 6rem; opacity: 0.5; }
+        .terminal-prompt { margin-top: 1.5rem; }
+        .terminal-cursor {
+            display: inline-block; width: 0.6em; height: 1.2em;
+            vertical-align: middle;
+            background-color: var(--cursor-color);
+            animation: blink 1s step-end infinite;
+        }
+
+        .text-primary { color: #1e293b; }
+        .text-red { color: #ef4444; }
+        .text-orange { color: #f97316; }
+        .text-yellow { color: #f59e0b; }
+        .text-cyan { color: #0ea5e9; }
+        .text-green { color: #10b981; }
+        .text-purple { color: #8b5cf6; }
+
+        .error-content { text-align: center; }
+        .error-content h1 {
+            font-size: 1.5rem; font-weight: 700;
+            color: #1e293b; margin-bottom: 0.75rem;
+        }
+        .error-content p {
+            color: #64748b; margin-bottom: 2rem;
+        }
+        .error-content .sub-text {
+            font-size: 0.875rem; opacity: 0.75;
+        }
+
+        .error-actions {
+            display: flex; justify-content: center; gap: 1rem;
+        }
+        .btn-home {
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 0.5rem; padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem; background: #0f172a; color: #fff;
+            font-weight: 700; text-decoration: none;
+            box-shadow: 0 10px 15px -3px rgba(226, 232, 240, 1);
+            transition: background 0.2s;
+        }
+        .btn-home:hover { background: #1e293b; }
+        .btn-home svg { width: 1.125rem; height: 1.125rem; }
+
+        .error-footer { text-align: center; width: 100%; }
+        .error-footer p {
+            margin-top: 1rem; font-size: 0.75rem; color: #94a3b8;
+        }
+        .error-footer a {
+            font-size: 0.875rem; color: #64748b;
+            transition: color 0.2s;
+        }
+        .error-footer a:hover { color: #f97316; }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+
+        @media (max-width: 640px) {
+            .error-actions { flex-direction: column; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="error-grid"></div>
+
+    {% block glow_effect %}
+    <div class="error-glow error-glow--red"></div>
+    {% endblock %}
+
+    <div class="error-container">
+        <div class="error-brand">
+            <a href="/">
+                <span class="error-brand-name">{{ website_name|upper }}</span>
+            </a>
+        </div>
+
+        {% block terminal_card %}{% endblock %}
+
+        <div class="error-content">
+            {% block error_content %}{% endblock %}
+        </div>
+    </div>
+
+    <div class="error-footer">
+        {% block footer_link %}{% endblock %}
+        <p>&copy; {{ "now"|date("Y") }} {{ website_name }}. {{ 'error.footer.rights'|trans }}</p>
+    </div>
+
+</body>
+
+</html>

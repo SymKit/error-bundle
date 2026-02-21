@@ -64,7 +64,7 @@ alwaysApply: true
 
 ## Commits
 
-When committing, never reference the agent or any co-author (no "trailer", Co-authored-by, Signed-off-by from the AI, or similar). Commit messages and metadata must describe only the change, with no self-attribution.
+When committing, never reference the agent or any co-author (no Co-authored-by, Signed-off-by from the AI, or similar). Commit messages and metadata must describe only the change, with no self-attribution. Never use `git commit --trailer` or add Co-authored-by to commits.
 
 ## After Every Change — Makefile First
 

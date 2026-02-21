@@ -1,6 +1,7 @@
 # Symkit Error Bundle
 
 [![CI](https://github.com/symkit/error-bundle/actions/workflows/ci.yml/badge.svg)](https://github.com/symkit/error-bundle/actions)
+[![Latest Version](https://img.shields.io/packagist/v/symkit/error-bundle.svg)](https://packagist.org/packages/symkit/error-bundle)
 [![PHPStan Level 9](https://img.shields.io/badge/PHPStan-level%209-brightgreen.svg)](https://phpstan.org/)
 
 Premium error page templates for Symfony applications. Overrides default Symfony error pages with a modern terminal-themed design.

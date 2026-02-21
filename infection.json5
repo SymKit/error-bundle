@@ -1,6 +1,10 @@
 {
     "$schema": "https://raw.githubusercontent.com/infection/infection/0.29.0/resources/schema.json",
-    "source": { "directories": ["src/"] },
+    "source": {
+        "directories": [
+            "src/"
+        ]
+    },
     "logs": {
         "text": "infection.log",
         "summary": "infection-summary.log"
@@ -11,5 +15,6 @@
     "testFrameworkOptions": "--testsuite=Unit",
     "phpUnit": {
         "customPath": "vendor/bin/phpunit"
-    }
+    },
+    "timeout": 60
 }

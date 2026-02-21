@@ -25,8 +25,12 @@ return [
 ```yaml
 # config/packages/symkit_error.yaml
 symkit_error:
-    website_name: 'Your Brand'  # default: 'Symkit'
+    enabled: true              # default: true — set to false to use Symfony default error pages
+    website_name: 'Your Brand' # default: 'Symkit'
 ```
+
+- **enabled** : when `false`, the bundle does not override error pages (Symfony defaults are used) and does not register the Twig global.
+- **website_name** : name displayed on error pages. Exposed in Twig as the global `symkit_error_website_name` (prefixed to avoid collisions with other bundles).
 
 ## Included Templates
 
@@ -53,7 +57,7 @@ Override any template in your application by creating the corresponding file:
 templates/bundles/TwigBundle/Exception/error404.html.twig
 ```
 
-The base layout exposes these Twig blocks: `error_title`, `cursor_color`, `glow_effect`, `terminal_card`, `error_content`, `footer_link`.
+The base layout exposes these Twig blocks: `error_title`, `cursor_color`, `glow_effect`, `terminal_card`, `error_content`, `footer_link`. It also uses the Twig global `symkit_error_website_name` for the site name.
 
 ## Contributing
 

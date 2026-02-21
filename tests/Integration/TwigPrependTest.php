@@ -66,8 +66,8 @@ final class TwigPrependTest extends KernelTestCase
         $twig = self::getContainer()->get('twig');
         $globals = $twig->getGlobals();
 
-        self::assertArrayHasKey('website_name', $globals);
-        self::assertSame('Symkit', $globals['website_name']);
+        self::assertArrayHasKey('symkit_error_website_name', $globals);
+        self::assertSame('Symkit', $globals['symkit_error_website_name']);
     }
 
     public function testTwigGlobalWebsiteNameReflectsConfig(): void
@@ -86,7 +86,24 @@ final class TwigPrependTest extends KernelTestCase
         $twig = $kernel->getContainer()->get('test.service_container')->get('twig');
         $globals = $twig->getGlobals();
 
-        self::assertArrayHasKey('website_name', $globals);
-        self::assertSame('Custom Name', $globals['website_name']);
+        self::assertArrayHasKey('symkit_error_website_name', $globals);
+        self::assertSame('Custom Name', $globals['symkit_error_website_name']);
+    }
+
+    public function testWhenDisabledTemplatePathAndGlobalAreNotRegistered(): void
+    {
+        /** @var TestKernel $kernel */
+        $kernel = self::createKernel();
+        $kernel->addTestConfig(static function ($container): void {
+            $container->loadFromExtension('framework', ['test' => true]);
+            $container->loadFromExtension('symkit_error', ['enabled' => false]);
+        });
+        $kernel->boot();
+
+        /** @var Environment $twig */
+        $twig = $kernel->getContainer()->get('test.service_container')->get('twig');
+        $globals = $twig->getGlobals();
+
+        self::assertArrayNotHasKey('symkit_error_website_name', $globals);
     }
 }

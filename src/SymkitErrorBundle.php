@@ -15,6 +15,10 @@ class SymkitErrorBundle extends AbstractBundle
     {
         $definition->rootNode()
             ->children()
+                ->booleanNode('enabled')
+                    ->defaultTrue()
+                    ->info('Enable the bundle to override Symfony default error pages with custom templates.')
+                ->end()
                 ->scalarNode('website_name')
                     ->defaultValue('Symkit')
                     ->info('The name of the website to display in error pages.')
@@ -23,31 +27,40 @@ class SymkitErrorBundle extends AbstractBundle
         ;
     }
 
-    /** @param array{website_name: string} $config */
+    /** @param array{enabled: bool, website_name: string} $config */
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
+        $builder->setParameter('symkit_error.enabled', $config['enabled']);
         $builder->setParameter('symkit_error.website_name', $config['website_name']);
     }
 
     public function prependExtension(ContainerConfigurator $container, ContainerBuilder $builder): void
     {
+        $configs = $builder->getExtensionConfig('symkit_error');
+        $enabled = true;
+        $websiteName = 'Symkit';
+        foreach ($configs as $config) {
+            if (isset($config['enabled'])) {
+                $enabled = $config['enabled'];
+            }
+            if (isset($config['website_name'])) {
+                $websiteName = $config['website_name'];
+            }
+        }
+
+        if (!$enabled) {
+            return;
+        }
+
         $builder->prependExtensionConfig('twig', [
             'paths' => [
                 $this->getPath().'/templates/bundles/TwigBundle' => 'Twig',
             ],
         ]);
 
-        $configs = $builder->getExtensionConfig('symkit_error');
-        $websiteName = 'Symkit';
-        foreach ($configs as $config) {
-            if (isset($config['website_name'])) {
-                $websiteName = $config['website_name'];
-            }
-        }
-
         $builder->prependExtensionConfig('twig', [
             'globals' => [
-                'website_name' => $websiteName,
+                'symkit_error_website_name' => $websiteName,
             ],
         ]);
     }

@@ -58,4 +58,29 @@ final class ConfigurationTest extends KernelTestCase
 
         self::assertSame('Acme Corp', $kernel->getContainer()->getParameter('symkit_error.website_name'));
     }
+
+    public function testDefaultEnabled(): void
+    {
+        /** @var TestKernel $kernel */
+        $kernel = self::createKernel();
+        $kernel->addTestConfig(static function ($container): void {
+            $container->loadFromExtension('framework', ['test' => true]);
+        });
+        $kernel->boot();
+
+        self::assertTrue($kernel->getContainer()->getParameter('symkit_error.enabled'));
+    }
+
+    public function testDisabled(): void
+    {
+        /** @var TestKernel $kernel */
+        $kernel = self::createKernel();
+        $kernel->addTestConfig(static function ($container): void {
+            $container->loadFromExtension('framework', ['test' => true]);
+            $container->loadFromExtension('symkit_error', ['enabled' => false]);
+        });
+        $kernel->boot();
+
+        self::assertFalse($kernel->getContainer()->getParameter('symkit_error.enabled'));
+    }
 }

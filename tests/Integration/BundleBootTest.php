@@ -45,10 +45,12 @@ final class BundleBootTest extends KernelTestCase
         );
     }
 
-    public function testWebsiteNameParameterIsRegistered(): void
+    public function testParametersAreRegistered(): void
     {
         self::bootKernel();
 
+        self::assertTrue(self::getContainer()->hasParameter('symkit_error.enabled'));
+        self::assertTrue(self::getContainer()->getParameter('symkit_error.enabled'));
         self::assertTrue(self::getContainer()->hasParameter('symkit_error.website_name'));
         self::assertSame('Symkit', self::getContainer()->getParameter('symkit_error.website_name'));
     }

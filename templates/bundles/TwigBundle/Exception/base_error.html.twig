@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block error_title %}{{ 'error.default.title'|trans({'%website_name%': website_name}) }}{% endblock %}</title>
+    <title>{% block error_title %}{{ 'error.default.title'|trans({'%website_name%': symkit_error_website_name}) }}{% endblock %}</title>
 
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -177,7 +177,7 @@
     <div class="error-container">
         <div class="error-brand">
             <a href="/">
-                <span class="error-brand-name">{{ website_name|upper }}</span>
+                <span class="error-brand-name">{{ symkit_error_website_name|upper }}</span>
             </a>
         </div>
 
@@ -190,7 +190,7 @@
 
     <div class="error-footer">
         {% block footer_link %}{% endblock %}
-        <p>&copy; {{ "now"|date("Y") }} {{ website_name }}. {{ 'error.footer.rights'|trans }}</p>
+        <p>&copy; {{ "now"|date("Y") }} {{ symkit_error_website_name }}. {{ 'error.footer.rights'|trans }}</p>
     </div>
 
 </body>

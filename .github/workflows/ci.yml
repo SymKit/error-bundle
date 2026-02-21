@@ -18,6 +18,7 @@ jobs:
         with: { php-version: '8.3' }
       - run: composer install --no-progress
       - run: make cs-check
+      - run: make lint
 
   phpstan:
     runs-on: ubuntu-latest

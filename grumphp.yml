@@ -7,3 +7,9 @@ grumphp:
             config: .php-cs-fixer.dist.php
         phpunit:
             config: phpunit.xml.dist
+        deptrac: ~
+        infection:
+            only_covered: true
+            min_covered_msi: 65
+            show_mutations: true
+            threads: max

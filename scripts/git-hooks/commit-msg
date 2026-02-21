@@ -1,0 +1,7 @@
+#!/bin/sh
+# Remove Co-authored-by and similar trailers added by Cursor/IDE (see .cursor/rules/symfony-bundle.mdc)
+if [ -n "$1" ] && [ -f "$1" ]; then
+	tmp=$(mktemp)
+	grep -v -E '^[[:space:]]*Co-authored-by:' "$1" > "$tmp" && mv "$tmp" "$1"
+fi
+exit 0

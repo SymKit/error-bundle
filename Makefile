@@ -1,10 +1,13 @@
-.PHONY: help install test phpstan cs-fix cs-check infection deptrac quality security-check lint ci
+.PHONY: help install install-hooks test phpstan cs-fix cs-check infection deptrac quality security-check lint ci
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
 install: ## Install dependencies
 	composer install
+
+install-hooks: ## Install git hooks (strips Co-authored-by from commits)
+	@cp scripts/git-hooks/commit-msg .git/hooks/commit-msg && chmod +x .git/hooks/commit-msg && echo "Git hook installed: .git/hooks/commit-msg"
 
 test: ## Run PHPUnit tests
 	vendor/bin/phpunit

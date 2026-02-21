@@ -20,8 +20,13 @@ Never call `vendor/bin/` directly — always use `make` targets:
 - `make security-check` — `composer audit`
 - `make quality` — full pipeline (cs-check + phpstan + deptrac + lint + test + infection)
 - `make ci` — security-check + quality
+- `make install-hooks` — install git hook that strips Co-authored-by from commit messages (optional, run after clone if the IDE adds it)
 
 Never commit code that fails `make quality`.
+
+## Commits (no self-attribution)
+
+Do not add Co-authored-by, Signed-off-by from the AI, or `git commit --trailer`. If the IDE adds Co-authored-by automatically, add a git hook: `scripts/git-hooks/commit-msg` that strips lines matching `Co-authored-by:`, and `make install-hooks` to copy it to `.git/hooks/commit-msg`. See symfony-bundle.mdc § Commits.
 
 ## PHPStan Level 9
 

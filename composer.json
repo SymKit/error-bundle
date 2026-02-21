@@ -3,7 +3,13 @@
     "description": "Premium error page templates for Symfony applications",
     "type": "symfony-bundle",
     "license": "MIT",
-    "keywords": ["symfony", "bundle", "error", "templates", "error-pages"],
+    "keywords": [
+        "symfony",
+        "bundle",
+        "error",
+        "templates",
+        "error-pages"
+    ],
     "version": "0.0.1",
     "authors": [
         {
@@ -38,19 +44,33 @@
         "phpstan/phpstan": "^2.0",
         "phpunit/phpunit": "^11.0",
         "deptrac/deptrac": "^2.0",
-        "symfony/twig-bridge": "^7.0 || ^8.0"
+        "symfony/twig-bridge": "^7.0 || ^8.0",
+        "symkit/bundle-ai-kit": "^0.0.1"
     },
     "minimum-stability": "stable",
     "extra": {
         "symfony": {
             "require": "^7.0 || ^8.0"
+        },
+        "bundle-ai-kit": {
+            "editors": [
+                "cursor"
+            ],
+            "skills": [
+                "symfony-bundle-core",
+                "symfony-bundle-ux",
+                "symfony-bundle-doctrine",
+                "symfony-bundle-flex",
+                "symfony-bundle-quality"
+            ]
         }
     },
     "config": {
         "allow-plugins": {
             "infection/extension-installer": true,
             "phpro/grumphp-shim": true,
-            "phpro/grumphp": true
+            "phpro/grumphp": true,
+            "symkit/bundle-ai-kit": true
         }
     }
 }

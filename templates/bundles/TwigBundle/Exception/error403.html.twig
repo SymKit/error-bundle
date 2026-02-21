@@ -54,7 +54,7 @@
 <p>{{ 'error.403.message'|trans }}</p>
 
 <div class="error-actions">
-    <a href="/" class="btn-home">
+    <a href="{{ symkit_error_home_path }}" class="btn-home">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         {{ 'error.action.home'|trans }}
     </a>
@@ -62,5 +62,5 @@
 {% endblock %}
 
 {% block footer_link %}
-<a href="/">{{ 'error.403.footer_link'|trans }}</a>
+<a href="{{ symkit_error_home_path }}">{{ 'error.403.footer_link'|trans }}</a>
 {% endblock %}

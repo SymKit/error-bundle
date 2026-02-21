@@ -213,6 +213,52 @@
                 <source>error.429.footer_link</source>
                 <target>Consulter notre politique d'utilisation</target>
             </trans-unit>
+
+            <!-- 503 Service Unavailable -->
+            <trans-unit id="error.503.title">
+                <source>error.503.title</source>
+                <target>Service Indisponible | %website_name%</target>
+            </trans-unit>
+            <trans-unit id="error.503.terminal.cmd">
+                <source>error.503.terminal.cmd</source>
+                <target>> maintenance.check_status()</target>
+            </trans-unit>
+            <trans-unit id="error.503.terminal.error_line1">
+                <source>error.503.terminal.error_line1</source>
+                <target>[SERVICE_UNAVAILABLE] Indisponibilité temporaire.</target>
+            </trans-unit>
+            <trans-unit id="error.503.terminal.error_line2">
+                <source>error.503.terminal.error_line2</source>
+                <target>Le système est en maintenance ou surchargé.</target>
+            </trans-unit>
+            <trans-unit id="error.503.terminal.label.eta">
+                <source>error.503.terminal.label.eta</source>
+                <target>Retour prévu :</target>
+            </trans-unit>
+            <trans-unit id="error.503.terminal.status">
+                <source>error.503.terminal.status</source>
+                <target>Maintenance en cours</target>
+            </trans-unit>
+            <trans-unit id="error.503.terminal.eta">
+                <source>error.503.terminal.eta</source>
+                <target>Bientôt de retour</target>
+            </trans-unit>
+            <trans-unit id="error.503.heading">
+                <source>error.503.heading</source>
+                <target>Nous revenons tout de suite.</target>
+            </trans-unit>
+            <trans-unit id="error.503.message">
+                <source>error.503.message</source>
+                <target>Le service est temporairement indisponible. Nous travaillons à le rétablir au plus vite.</target>
+            </trans-unit>
+            <trans-unit id="error.503.sub_message">
+                <source>error.503.sub_message</source>
+                <target>Merci de votre patience.</target>
+            </trans-unit>
+            <trans-unit id="error.503.footer_link">
+                <source>error.503.footer_link</source>
+                <target>Retour à l'accueil</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -1,12 +1,12 @@
 {% extends '@Twig/Exception/base_error.html.twig' %}
 
 {% block meta_robots %}<meta name="robots" content="noindex, follow">{% endblock %}
-{% block error_title %}{{ 'error.404.title'|trans({'%website_name%': symkit_error_website_name}) }}{% endblock %}
+{% block error_title %}{{ 'error.503.title'|trans({'%website_name%': symkit_error_website_name}) }}{% endblock %}
 
-{% block cursor_color %}#f59e0b{% endblock %}
+{% block cursor_color %}#0ea5e9{% endblock %}
 
 {% block glow_effect %}
-<div class="error-glow error-glow--yellow"></div>
+<div class="error-glow error-glow--blue"></div>
 {% endblock %}
 
 {% block terminal_card %}
@@ -17,28 +17,30 @@
             <div class="terminal-dot terminal-dot--minimize"></div>
             <div class="terminal-dot terminal-dot--maximize"></div>
         </div>
-        <div class="terminal-title">visitor@dashboard: ~</div>
-        <div></div>
+        <div class="terminal-title">ops@maintenance: ~</div>
+        <div class="terminal-header-icon text-cyan">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </div>
     </div>
 
     <div class="terminal-body">
-        <div class="terminal-cmd">{{ 'error.404.terminal.cmd'|trans }}</div>
-        <div class="terminal-error text-yellow">
-            {{ 'error.404.terminal.error_line1'|trans }}<br>
-            {{ 'error.404.terminal.error_line2'|trans }}
+        <div class="terminal-cmd">{{ 'error.503.terminal.cmd'|trans }}</div>
+        <div class="terminal-error text-cyan">
+            {{ 'error.503.terminal.error_line1'|trans }}<br>
+            {{ 'error.503.terminal.error_line2'|trans }}
         </div>
         <div class="terminal-info">
             <div class="terminal-info-row">
                 <span class="terminal-info-label">{{ 'error.terminal.label.code'|trans }}</span>
-                <span class="text-primary">404_NOT_FOUND</span>
+                <span class="text-primary">503_SERVICE_UNAVAILABLE</span>
             </div>
             <div class="terminal-info-row">
-                <span class="terminal-info-label">{{ 'error.404.terminal.label.path'|trans }}</span>
-                <span class="text-primary">{{ app.request.pathInfo }}</span>
+                <span class="terminal-info-label">{{ 'error.terminal.label.status'|trans }}</span>
+                <span class="text-cyan">{{ 'error.503.terminal.status'|trans }}</span>
             </div>
             <div class="terminal-info-row">
-                <span class="terminal-info-label">{{ 'error.404.terminal.label.ping'|trans }}</span>
-                <span class="text-red">{{ 'error.404.terminal.ping'|trans }}</span>
+                <span class="terminal-info-label">{{ 'error.503.terminal.label.eta'|trans }}</span>
+                <span class="text-cyan">{{ 'error.503.terminal.eta'|trans }}</span>
             </div>
         </div>
         <div class="terminal-prompt">
@@ -49,8 +51,9 @@
 {% endblock %}
 
 {% block error_content %}
-<h1>{{ 'error.404.heading'|trans }}</h1>
-<p>{{ 'error.404.message'|trans }}</p>
+<h1>{{ 'error.503.heading'|trans }}</h1>
+<p>{{ 'error.503.message'|trans }}</p>
+<p class="sub-text">{{ 'error.503.sub_message'|trans }}</p>
 
 <div class="error-actions">
     <a href="{{ symkit_error_home_path }}" class="btn-home">
@@ -58,4 +61,8 @@
         {{ 'error.action.home'|trans }}
     </a>
 </div>
+{% endblock %}
+
+{% block footer_link %}
+<a href="{{ symkit_error_home_path }}">{{ 'error.503.footer_link'|trans }}</a>
 {% endblock %}

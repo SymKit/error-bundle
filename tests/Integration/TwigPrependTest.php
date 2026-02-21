@@ -105,5 +105,26 @@ final class TwigPrependTest extends KernelTestCase
         $globals = $twig->getGlobals();
 
         self::assertArrayNotHasKey('symkit_error_website_name', $globals);
+        self::assertArrayNotHasKey('symkit_error_home_path', $globals);
+    }
+
+    public function testTwigGlobalHomePathReflectsConfig(): void
+    {
+        /** @var TestKernel $kernel */
+        $kernel = self::createKernel();
+        $kernel->addTestConfig(static function ($container): void {
+            $container->loadFromExtension('framework', ['test' => true]);
+            $container->loadFromExtension('symkit_error', [
+                'home_path' => '/app',
+            ]);
+        });
+        $kernel->boot();
+
+        /** @var Environment $twig */
+        $twig = $kernel->getContainer()->get('test.service_container')->get('twig');
+        $globals = $twig->getGlobals();
+
+        self::assertArrayHasKey('symkit_error_home_path', $globals);
+        self::assertSame('/app', $globals['symkit_error_home_path']);
     }
 }

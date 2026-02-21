@@ -53,5 +53,7 @@ final class BundleBootTest extends KernelTestCase
         self::assertTrue(self::getContainer()->getParameter('symkit_error.enabled'));
         self::assertTrue(self::getContainer()->hasParameter('symkit_error.website_name'));
         self::assertSame('Symkit', self::getContainer()->getParameter('symkit_error.website_name'));
+        self::assertTrue(self::getContainer()->hasParameter('symkit_error.home_path'));
+        self::assertSame('/', self::getContainer()->getParameter('symkit_error.home_path'));
     }
 }

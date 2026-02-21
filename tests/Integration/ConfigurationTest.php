@@ -83,4 +83,31 @@ final class ConfigurationTest extends KernelTestCase
 
         self::assertFalse($kernel->getContainer()->getParameter('symkit_error.enabled'));
     }
+
+    public function testDefaultHomePath(): void
+    {
+        /** @var TestKernel $kernel */
+        $kernel = self::createKernel();
+        $kernel->addTestConfig(static function ($container): void {
+            $container->loadFromExtension('framework', ['test' => true]);
+        });
+        $kernel->boot();
+
+        self::assertSame('/', $kernel->getContainer()->getParameter('symkit_error.home_path'));
+    }
+
+    public function testCustomHomePath(): void
+    {
+        /** @var TestKernel $kernel */
+        $kernel = self::createKernel();
+        $kernel->addTestConfig(static function ($container): void {
+            $container->loadFromExtension('framework', ['test' => true]);
+            $container->loadFromExtension('symkit_error', [
+                'home_path' => '/dashboard',
+            ]);
+        });
+        $kernel->boot();
+
+        self::assertSame('/dashboard', $kernel->getContainer()->getParameter('symkit_error.home_path'));
+    }
 }

@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block error_title %}{{ 'error.default.title'|trans({'%website_name%': symkit_error_website_name}) }}{% endblock %}</title>
+    {% block meta_robots %}{% endblock %}
 
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -42,6 +43,7 @@
         .error-glow--red { background: rgba(239, 68, 68, 0.1); }
         .error-glow--orange { background: rgba(249, 115, 22, 0.1); }
         .error-glow--yellow { background: rgba(245, 158, 11, 0.1); }
+        .error-glow--blue { background: rgba(14, 165, 233, 0.1); }
 
         .error-container {
             position: relative; z-index: 10;
@@ -176,7 +178,7 @@
 
     <div class="error-container">
         <div class="error-brand">
-            <a href="/">
+            <a href="{{ symkit_error_home_path }}">
                 <span class="error-brand-name">{{ symkit_error_website_name|upper }}</span>
             </a>
         </div>

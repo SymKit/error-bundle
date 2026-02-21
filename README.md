@@ -27,10 +27,12 @@ return [
 symkit_error:
     enabled: true              # default: true — set to false to use Symfony default error pages
     website_name: 'Your Brand' # default: 'Symkit'
+    home_path: '/'             # default: '/' — URL or path for "Back to homepage" and footer links
 ```
 
-- **enabled** : when `false`, the bundle does not override error pages (Symfony defaults are used) and does not register the Twig global.
+- **enabled** : when `false`, the bundle does not override error pages (Symfony defaults are used) and does not register the Twig globals.
 - **website_name** : name displayed on error pages. Exposed in Twig as the global `symkit_error_website_name` (prefixed to avoid collisions with other bundles).
+- **home_path** : link target for the homepage (e.g. `/` or `/app`). Exposed in Twig as the global `symkit_error_home_path`.
 
 ## Included Templates
 
@@ -40,6 +42,7 @@ symkit_error:
 | `error403.html.twig` | 403 | Forbidden access |
 | `error401.html.twig` | 401 | Unauthorized |
 | `error429.html.twig` | 429 | Too many requests |
+| `error503.html.twig` | 503 | Service unavailable / maintenance |
 | `error.html.twig` | 5xx | Generic server error |
 | `base_error.html.twig` | — | Base layout for all error pages |
 
@@ -57,7 +60,7 @@ Override any template in your application by creating the corresponding file:
 templates/bundles/TwigBundle/Exception/error404.html.twig
 ```
 
-The base layout exposes these Twig blocks: `error_title`, `cursor_color`, `glow_effect`, `terminal_card`, `error_content`, `footer_link`. It also uses the Twig global `symkit_error_website_name` for the site name.
+The base layout exposes these Twig blocks: `error_title`, `cursor_color`, `glow_effect`, `terminal_card`, `error_content`, `footer_link`. It uses the Twig globals `symkit_error_website_name` (site name) and `symkit_error_home_path` (homepage link).
 
 ## Contributing
 

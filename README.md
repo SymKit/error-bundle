@@ -66,9 +66,8 @@ The base layout exposes these Twig blocks: `error_title`, `cursor_color`, `glow_
 ## Contributing
 
 ```bash
-make install       # Install dependencies
-make install-hooks # Optional: install git hook that strips Co-authored-by from commits
-make quality       # Run full quality pipeline (CS, PHPStan, Deptrac, tests, Infection)
+make install   # Install dependencies
+make quality   # Run full quality pipeline (CS, PHPStan, Deptrac, tests, Infection)
 ```
 
 Never commit code that fails `make quality`.

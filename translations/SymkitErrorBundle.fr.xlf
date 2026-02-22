@@ -25,6 +25,10 @@
             </trans-unit>
 
             <!-- Generic error (500) -->
+            <trans-unit id="error.generic.terminal.title">
+                <source>error.generic.terminal.title</source>
+                <target>root@core: ~</target>
+            </trans-unit>
             <trans-unit id="error.generic.title">
                 <source>error.generic.title</source>
                 <target>Erreur Système | %website_name%</target>
@@ -55,6 +59,10 @@
             </trans-unit>
 
             <!-- 401 Unauthorized -->
+            <trans-unit id="error.401.terminal.title">
+                <source>error.401.terminal.title</source>
+                <target>gatekeeper@security: ~</target>
+            </trans-unit>
             <trans-unit id="error.401.title">
                 <source>error.401.title</source>
                 <target>Zone Restreinte | %website_name%</target>
@@ -89,6 +97,10 @@
             </trans-unit>
 
             <!-- 403 Forbidden -->
+            <trans-unit id="error.403.terminal.title">
+                <source>error.403.terminal.title</source>
+                <target>admin@system: ~</target>
+            </trans-unit>
             <trans-unit id="error.403.title">
                 <source>error.403.title</source>
                 <target>Accès Interdit | %website_name%</target>
@@ -131,6 +143,10 @@
             </trans-unit>
 
             <!-- 404 Not Found -->
+            <trans-unit id="error.404.terminal.title">
+                <source>error.404.terminal.title</source>
+                <target>visitor@dashboard: ~</target>
+            </trans-unit>
             <trans-unit id="error.404.title">
                 <source>error.404.title</source>
                 <target>Page Introuvable | %website_name%</target>
@@ -169,6 +185,10 @@
             </trans-unit>
 
             <!-- 429 Too Many Requests -->
+            <trans-unit id="error.429.terminal.title">
+                <source>error.429.terminal.title</source>
+                <target>system@rate-limiter: ~</target>
+            </trans-unit>
             <trans-unit id="error.429.title">
                 <source>error.429.title</source>
                 <target>Trop de Requêtes | %website_name%</target>
@@ -215,6 +235,10 @@
             </trans-unit>
 
             <!-- 503 Service Unavailable -->
+            <trans-unit id="error.503.terminal.title">
+                <source>error.503.terminal.title</source>
+                <target>ops@maintenance: ~</target>
+            </trans-unit>
             <trans-unit id="error.503.title">
                 <source>error.503.title</source>
                 <target>Service Indisponible | %website_name%</target>

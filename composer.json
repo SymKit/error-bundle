@@ -44,7 +44,7 @@
         "phpunit/phpunit": "^11.0",
         "deptrac/deptrac": "^2.0",
         "symfony/twig-bridge": "^7.0 || ^8.0",
-        "symkit/bundle-ai-kit": "^0.0.3"
+        "symkit/bundle-ai-kit": "~0.0.1"
     },
     "minimum-stability": "stable",
     "extra": {

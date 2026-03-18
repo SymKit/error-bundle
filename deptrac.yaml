@@ -4,7 +4,7 @@ deptrac:
     layers:
         - name: Bundle
           collectors:
-            - type: classLike
-              value: Symkit\\ErrorBundle\\SymkitErrorBundle
+            - type: directory
+              value: src/
     ruleset:
         Bundle: []

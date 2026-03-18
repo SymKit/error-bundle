@@ -110,4 +110,34 @@ final class ConfigurationTest extends KernelTestCase
 
         self::assertSame('/dashboard', $kernel->getContainer()->getParameter('symkit_error.home_path'));
     }
+
+    public function testUnsafeHomePathFallsBackToRoot(): void
+    {
+        /** @var TestKernel $kernel */
+        $kernel = self::createKernel();
+        $kernel->addTestConfig(static function ($container): void {
+            $container->loadFromExtension('framework', ['test' => true]);
+            $container->loadFromExtension('symkit_error', [
+                'home_path' => '//phishing.example/login',
+            ]);
+        });
+        $kernel->boot();
+
+        self::assertSame('/', $kernel->getContainer()->getParameter('symkit_error.home_path'));
+    }
+
+    public function testEmptyWebsiteNameFallsBackToDefault(): void
+    {
+        /** @var TestKernel $kernel */
+        $kernel = self::createKernel();
+        $kernel->addTestConfig(static function ($container): void {
+            $container->loadFromExtension('framework', ['test' => true]);
+            $container->loadFromExtension('symkit_error', [
+                'website_name' => '   ',
+            ]);
+        });
+        $kernel->boot();
+
+        self::assertSame('Symkit', $kernel->getContainer()->getParameter('symkit_error.website_name'));
+    }
 }

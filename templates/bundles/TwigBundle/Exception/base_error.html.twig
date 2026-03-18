@@ -1,4 +1,8 @@
 {% trans_default_domain 'SymkitErrorBundle' %}
+{% types {
+    symkit_error_website_name: 'string',
+    symkit_error_home_path: 'string',
+} %}
 <!DOCTYPE html>
 <html lang="{{ app.request.locale|default('en') }}">
 
@@ -176,7 +180,7 @@
     <div class="error-glow error-glow--red"></div>
     {% endblock %}
 
-    <div class="error-container">
+    <main class="error-container" id="main-content">
         <div class="error-brand">
             <a href="{{ symkit_error_home_path }}">
                 <span class="error-brand-name">{{ symkit_error_website_name|upper }}</span>
@@ -188,11 +192,11 @@
         <div class="error-content">
             {% block error_content %}{% endblock %}
         </div>
-    </div>
+    </main>
 
     <div class="error-footer">
         {% block footer_link %}{% endblock %}
-        <p>&copy; {{ "now"|date("Y") }} {{ symkit_error_website_name }}. {{ 'error.footer.rights'|trans }}</p>
+        <p>&copy; {{ "now"|format_datetime(pattern: 'y', locale: app.request.locale|default('en')) }} {{ symkit_error_website_name }}. {{ 'error.footer.rights'|trans }}</p>
     </div>
 
 </body>

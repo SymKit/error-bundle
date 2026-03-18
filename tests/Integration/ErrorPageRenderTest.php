@@ -10,6 +10,7 @@ use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symkit\ErrorBundle\SymkitErrorBundle;
+use Symkit\ErrorBundle\Tests\Support\TwigTestKernelConfig;
 use Twig\Environment;
 
 final class ErrorPageRenderTest extends KernelTestCase
@@ -31,9 +32,7 @@ final class ErrorPageRenderTest extends KernelTestCase
         $kernel = parent::createKernel($options);
         $kernel->addTestBundle(TwigBundle::class);
         $kernel->addTestBundle(SymkitErrorBundle::class);
-        $kernel->addTestConfig(static function ($container): void {
-            $container->loadFromExtension('framework', ['test' => true]);
-        });
+        $kernel->addTestConfig(TwigTestKernelConfig::frameworkTestWithTwigIntl());
         $kernel->handleOptions($options);
 
         return $kernel;
@@ -64,6 +63,51 @@ final class ErrorPageRenderTest extends KernelTestCase
         /** @var Environment $twig */
         $twig = self::getContainer()->get('twig');
         $content = $twig->render('@Twig/Exception/error503.html.twig');
+
+        self::assertStringContainsString('error-container', $content);
+        self::assertStringContainsString('noindex', $content);
+    }
+
+    public function test401TemplateRendersWithExpectedContent(): void
+    {
+        self::bootKernel();
+
+        $requestStack = self::getContainer()->get('request_stack');
+        $requestStack->push(Request::create('/_test-401', 'GET'));
+
+        /** @var Environment $twig */
+        $twig = self::getContainer()->get('twig');
+        $content = $twig->render('@Twig/Exception/error401.html.twig');
+
+        self::assertStringContainsString('error-container', $content);
+        self::assertStringContainsString('aria-hidden="true"', $content);
+    }
+
+    public function test403TemplateRendersWithExpectedContent(): void
+    {
+        self::bootKernel();
+
+        $requestStack = self::getContainer()->get('request_stack');
+        $requestStack->push(Request::create('/_test-403', 'GET'));
+
+        /** @var Environment $twig */
+        $twig = self::getContainer()->get('twig');
+        $content = $twig->render('@Twig/Exception/error403.html.twig');
+
+        self::assertStringContainsString('error-container', $content);
+        self::assertStringContainsString('noindex', $content);
+    }
+
+    public function test429TemplateRendersWithExpectedContent(): void
+    {
+        self::bootKernel();
+
+        $requestStack = self::getContainer()->get('request_stack');
+        $requestStack->push(Request::create('/_test-429', 'GET'));
+
+        /** @var Environment $twig */
+        $twig = self::getContainer()->get('twig');
+        $content = $twig->render('@Twig/Exception/error429.html.twig');
 
         self::assertStringContainsString('error-container', $content);
         self::assertStringContainsString('noindex', $content);

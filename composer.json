@@ -50,18 +50,6 @@
     "extra": {
         "symfony": {
             "require": "^7.0 || ^8.0"
-        },
-        "bundle-ai-kit": {
-            "editors": [
-                "cursor"
-            ],
-            "skills": [
-                "symfony-bundle-core",
-                "symfony-bundle-ux",
-                "symfony-bundle-doctrine",
-                "symfony-bundle-flex",
-                "symfony-bundle-quality"
-            ]
         }
     },
     "config": {
